@@ -1,11 +1,39 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import emailjs from "@emailjs/browser";
 
 const MyPopup = ({ show, setShow }) => {
   const handleClose = () => setShow(false);
   const [validated, setValidated] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    address: "",
+    phone: "",
+  });
+  const form = useRef();
+console.log("  form?.current",  form?.current)
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        "service_56ponje",
+        "template_wo5zpyt",
+        form?.current,
+        "P_OGJ56eorjovyNbb"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+      setShow(false)
+    // e.target.reset();
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -13,14 +41,9 @@ const MyPopup = ({ show, setShow }) => {
       event.preventDefault();
       event.stopPropagation();
     }
-
+    sendEmail(event)
     setValidated(true);
   };
-  const [formData, setFormData] = useState({
-    name: "",
-    address: "",
-    phone: "",
-  });
 
   return (
     <>
@@ -34,13 +57,19 @@ const MyPopup = ({ show, setShow }) => {
           <Modal.Title>Đặt Hàng</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <Form
+            ref={form}
+            noValidate
+            validated={validated}
+            onSubmit={handleSubmit}
+          >
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Họ và Tên</Form.Label>
               <Form.Control
                 required={true}
                 type="text"
                 placeholder="Nhập tên của bạn"
+                name="name"
                 onChange={(e) =>
                   setFormData({
                     ...formData,
@@ -57,6 +86,7 @@ const MyPopup = ({ show, setShow }) => {
               <Form.Label>Địa chỉ</Form.Label>
               <Form.Control
                 required={true}
+                name="address"
                 type="text"
                 placeholder="Nhập địa chỉ của bạn"
                 onChange={(e) =>
@@ -72,6 +102,7 @@ const MyPopup = ({ show, setShow }) => {
               <Form.Control
                 required={true}
                 type="number"
+                name="phone"
                 placeholder="Nhập số điện thoại của bạn"
                 onChange={(e) =>
                   setFormData({
@@ -85,7 +116,11 @@ const MyPopup = ({ show, setShow }) => {
               <Button variant="secondary" onClick={handleClose}>
                 Đóng
               </Button>
-              <Button type="submit" variant="primary">
+              <Button
+                type="submit"
+                variant="primary"
+                // onClick={(e) => sendEmail(e)}
+              >
                 Đặt hàng
               </Button>
             </Modal.Footer>
