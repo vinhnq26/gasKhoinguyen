@@ -38,7 +38,7 @@ const Product = ({product}) => {
                     <FontAwesomeIcon icon={faPlusSquare} />
                   </button>
                 </div>
-                <MyPopup show={show} setShow={setShow} />
+                <MyPopup show={show} setShow={setShow} title={title} price={price} />
               </div>
             )}
           </ProductConsumer>

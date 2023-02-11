@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import emailjs from "@emailjs/browser";
 
-const MyPopup = ({ show, setShow }) => {
+const MyPopup = ({ show, setShow, price, title }) => {
   const handleClose = () => setShow(false);
   const [validated, setValidated] = useState(false);
   const [formData, setFormData] = useState({
@@ -13,7 +13,7 @@ const MyPopup = ({ show, setShow }) => {
     phone: "",
   });
   const form = useRef();
-console.log("  form?.current",  form?.current)
+  console.log("  form?.current", form?.current);
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs
@@ -26,12 +26,15 @@ console.log("  form?.current",  form?.current)
       .then(
         (result) => {
           console.log(result.text);
+          alert(
+            "Đặt hàng thành công . Chúng tôi sẽ liên hệ và xác nhận đơn hàng . Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi ."
+          );
         },
         (error) => {
           console.log(error.text);
         }
       );
-      setShow(false)
+    setShow(false);
     // e.target.reset();
   };
   const handleSubmit = (event) => {
@@ -40,8 +43,10 @@ console.log("  form?.current",  form?.current)
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+    } else {
+      sendEmail(event);
     }
-    sendEmail(event)
+
     setValidated(true);
   };
 
@@ -110,6 +115,24 @@ console.log("  form?.current",  form?.current)
                     phone: e.target.value,
                   })
                 }
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Tên sản phẩm</Form.Label>
+              <Form.Control
+                readOnly={true}
+                type="text"
+                name="titlesp"
+                defaultValue={title}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Gía</Form.Label>
+              <Form.Control
+                readOnly={true}
+                type="text"
+                name="pricesp"
+                defaultValue={price}
               />
             </Form.Group>
             <Modal.Footer>
