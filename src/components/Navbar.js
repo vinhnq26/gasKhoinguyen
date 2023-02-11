@@ -7,12 +7,26 @@ import GoogleLogin from "react-google-login";
 import { gapi } from "gapi-script";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
   const [profile, setProfile] = useState("");
   const clientId =
     "746537720400-on1e0j856ksf0h76k3n216bo4olb15f7.apps.googleusercontent.com";
   const clientSecret = "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";
+  const notify = () => toast.success("Đăng nhập thành công");
+  const notiError = () =>
+    toast.error("🦄 Lỗi đăng nhập , Xin thử lại!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   useEffect(() => {
     const initClient = () => {
       gapi.client.init({
@@ -29,10 +43,10 @@ const Navbar = () => {
       // document.body.classList.remove('body_login_page');
       window.history.pushState({ urlPath: "/" }, "", "/");
       setProfile(JSON.parse(localStorage.getItem("profile")));
-      alert("Login successed", "success");
+      notify();
       return true;
     } else {
-      alert("Login information is incorrect", "error");
+      notiError();
       // document.body.classList.remove('body_login_page');
       return false;
     }
@@ -40,6 +54,9 @@ const Navbar = () => {
 
   return (
     <NavWrapper className="navbar navbar-expand-sm px-sm-5">
+      <div>
+        <ToastContainer />
+      </div>
       <Link to="/">
         <img src={logo} alt="store" className="navbar-brand" />
         Trang chủ
@@ -110,6 +127,6 @@ const NavWrapper = styled.nav`
   }
   .shopping {
     background-color: transparent;
-    border: none
+    border: none;
   }
 `;

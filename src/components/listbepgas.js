@@ -13,7 +13,6 @@ export default class listbepgas extends Component {
             <div className="row">
             <ProductConsumer className="aaahahhh">
                 {(value) => {
-                  console.log(value)
                   return value.databepgas.map(product => {
                     return <Productbep key={product.id } product={product}/>;
                   }) 
