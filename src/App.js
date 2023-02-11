@@ -8,9 +8,7 @@ import Details from './components/Details';
 import Detailbepgas from './components/detailbepgas';
 import listbepgas from './components/listbepgas'; 
 import Default from './components/Default';
-import Modal from './components/Modal';
 import SimpleMenu from "../src/components/menu/menu"
-import { colors } from '@material-ui/core';
 
 
 function App() {
@@ -25,7 +23,6 @@ function App() {
         <Route path="/listbepgas" component={listbepgas} />
         <Route component={Default} />
       </Switch>
-      <Modal />  
     </React.Fragment>
   ); 
 }

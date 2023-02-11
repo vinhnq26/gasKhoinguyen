@@ -33,7 +33,7 @@ export default function SimpleMenu() {
       >
         <Link to="/listbepgas" className="ml-auto" onClick={handleClose} >
           <span className="mr-2" style={{ marginLeft: "5px" }}>
-            <i class=" fa fa-shopping-cart"></i>
+            <i className=" fa fa-shopping-cart"></i>
           </span>
           Bếp gas và bếp khè
         </Link>
@@ -47,7 +47,7 @@ export default function SimpleMenu() {
         <br />
         <Link to="/" className="ml-auto" onClick={handleClose}>
           <span className="mr-2" style={{ marginLeft: "5px" }}>
-            <i class="fa fa-fire" aria-hidden="true"></i>
+            <i className="fa fa-fire" aria-hidden="true"></i>
           </span>
           Gas
         </Link>
@@ -65,7 +65,7 @@ export default function SimpleMenu() {
       >
         <Link  className="ml-auto" onClick={handleClose2}>
             <span className="mr-2" style={{marginLeft:"5px"}}  >
-            <i class="fas fa-money-check-alt"></i>
+            <i className="fas fa-money-check-alt"></i>
             </span>
           MOMO:0332350536
            
@@ -73,7 +73,7 @@ export default function SimpleMenu() {
         <br/>
         <Link  className="ml-auto" onClick={handleClose2} >
             <span className="mr-2" style={{marginLeft:"5px"}}>
-            <i class="fas fa-money-check-alt"></i>
+            <i className="fas fa-money-check-alt"></i>
             </span>
           BIDV:72910000118269
         </Link>

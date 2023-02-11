@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { ButtonContainer } from "./Button";
 import GoogleLogin from "react-google-login";
 import { gapi } from "gapi-script";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const [profile, setProfile] = useState("");
@@ -61,12 +63,15 @@ const Navbar = () => {
       <Link className="ml-auto">
         <ButtonContainer>
           <span className="mr-2">
-            <i class="fas fa-motorcycle"></i>
+            <i className="fas fa-motorcycle"></i>
           </span>
           Giao hàng miễn phí tận nơi. <br />
           Sẵn sàn phục vụ mọi nơi tại huyện Thạnh Phú .
         </ButtonContainer>
       </Link>
+      <button className="shopping" title="Giỏ hàng của bạn">
+        <FontAwesomeIcon icon={faCartShopping} />
+      </button>
       {profile?.email ? (
         <div className="">
           <span> Welcome {profile?.email}</span>
@@ -102,5 +107,9 @@ const NavWrapper = styled.nav`
     color: var(--mainWhite) !important;
     font-size: 1.3rem;
     text-transform: capitalize !important;
+  }
+  .shopping {
+    background-color: transparent;
+    border: none
   }
 `;
