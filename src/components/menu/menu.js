@@ -1,11 +1,11 @@
-import React, { useEffect,useState } from "react";
+import React from "react";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import { Link } from "react-router-dom";
 
 export default function SimpleMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [anchorEl2, setAnchorEl2] = React.useState(null);
+  // const [anchorEl2, setAnchorEl2] = React.useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

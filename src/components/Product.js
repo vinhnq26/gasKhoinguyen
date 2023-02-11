@@ -104,7 +104,7 @@ const ProductWrapper = styled.div`
     right: 0;
     padding: 0.2rem 0.4rem;
 
-    border: none;
+    border: none !important;
     color: var(--mainWhite);
     font-size: 1.4rem;
     border-radius: 0.5rem 0 0 0;
@@ -120,6 +120,10 @@ const ProductWrapper = styled.div`
   }
   .cart-btn > button {
     // background: var(--lightBlue);
-    border: none;
+    border: none !important;
+  }
+  .cart-btn > a > button {
+    // background: var(--lightBlue);
+    border: none !important;
   }
 `;
