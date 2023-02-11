@@ -3,6 +3,8 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import emailjs from "@emailjs/browser";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MyPopup = ({ show, setShow, price, title }) => {
   const handleClose = () => setShow(false);
@@ -13,7 +15,21 @@ const MyPopup = ({ show, setShow, price, title }) => {
     phone: "",
   });
   const form = useRef();
-  console.log("  form?.current", form?.current);
+  const notify = () =>
+    toast.success(
+      "Đặt hàng thành công . Chúng tôi sẽ liên hệ và xác nhận đơn hàng . Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi ."
+    );
+  const notiError = () =>
+    toast.error("🦄 Lỗi đặt hàng , Xin thử lại!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs
@@ -26,12 +42,11 @@ const MyPopup = ({ show, setShow, price, title }) => {
       .then(
         (result) => {
           console.log(result.text);
-          alert(
-            "Đặt hàng thành công . Chúng tôi sẽ liên hệ và xác nhận đơn hàng . Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi ."
-          );
+          notify();
         },
         (error) => {
           console.log(error.text);
+          notiError();
         }
       );
     setShow(false);
@@ -52,6 +67,9 @@ const MyPopup = ({ show, setShow, price, title }) => {
 
   return (
     <>
+      <div>
+        <ToastContainer />
+      </div>
       <Modal
         show={show}
         onHide={handleClose}

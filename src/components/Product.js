@@ -9,52 +9,56 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import MyPopup from "./Popup";
 
-const Product = ({product}) => {
-    const { id, title, img, price, inCart } = product;
-    const [show, setShow] = useState(false);
-    return (
-      <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
-        <div className="card" style={{ height: "100%" }}>
-          <ProductConsumer>
-            {(value) => (
-              <div
-                className="img-container p-5"
-                // onClick={() => value.handleDetail(id)}
-              >
-                <img src={img} alt="product" className="card-img-top" />
-                <div className="d-flex cart-btn">
-                  <Link to="/details">
-                    <button
-                      title="Xem Chi Tiết"
-                      onClick={() => value.handleDetail(id)}
-                    >
-                      <FontAwesomeIcon icon={faEye} />
-                    </button>
-                  </Link>
-                  <button title="Đặt Ngay"  onClick={() => setShow(!show)}>
-                    <FontAwesomeIcon icon={faCartShopping} />
+const Product = ({ product }) => {
+  const { id, title, img, price, inCart } = product;
+  const [show, setShow] = useState(false);
+  return (
+    <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
+      <div className="card" style={{ height: "100%" }}>
+        <ProductConsumer>
+          {(value) => (
+            <div
+              className="img-container p-5"
+              // onClick={() => value.handleDetail(id)}
+            >
+              <img src={img} alt="product" className="card-img-top" />
+              <div className="d-flex cart-btn">
+                <Link to="/details">
+                  <button
+                    title="Xem Chi Tiết"
+                    onClick={() => value.handleDetail(id)}
+                  >
+                    <FontAwesomeIcon icon={faEye} />
                   </button>
-                  <button title="Thêm vào giỏ hàng" >
-                    <FontAwesomeIcon icon={faPlusSquare} />
-                  </button>
-                </div>
-                <MyPopup show={show} setShow={setShow} title={title} price={price} />
+                </Link>
+                <button title="Đặt Ngay" onClick={() => setShow(!show)}>
+                  <FontAwesomeIcon icon={faCartShopping} />
+                </button>
+                <button title="Thêm vào giỏ hàng">
+                  <FontAwesomeIcon icon={faPlusSquare} />
+                </button>
               </div>
-            )}
-          </ProductConsumer>
-          {/* card footer */}
-          <div className="card-footer d-flex justify-content-between">
-            <p className="align-seft-center mb-0">{title}</p>
-          </div>
-          <h5 className="text-blue font-italic mb-0 card-footer text-center">
-            Giao hàng + Sửa chữa bếp gas miễn phí !
-          </h5>
+              <MyPopup
+                show={show}
+                setShow={setShow}
+                title={title}
+                price={price}
+              />
+            </div>
+          )}
+        </ProductConsumer>
+        {/* card footer */}
+        <div className="card-footer d-flex justify-content-between">
+          <p className="align-seft-center mb-0">{title}</p>
         </div>
-      </ProductWrapper>
-    );
-  
-}
-export default Product
+        <h5 className="text-blue font-italic mb-0 card-footer text-center">
+          Giao hàng + Sửa chữa bếp gas miễn phí !
+        </h5>
+      </div>
+    </ProductWrapper>
+  );
+};
+export default Product;
 Product.propTypes = {
   product: PropTypes.shape({
     id: PropTypes.number,
