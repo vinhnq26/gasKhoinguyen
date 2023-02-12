@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import logo from "../logo.jpg";
+import logo from "../logo.png";
+import logo2 from "../logo2.png";
 import styled from "styled-components";
 import { ButtonContainer } from "./Button";
 import GoogleLogin from "react-google-login";
@@ -10,6 +10,7 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button, Modal } from "react-bootstrap";
+import { faMagnifyingGlassLocation } from "@fortawesome/free-solid-svg-icons";
 // import SimpleMenu from './menu/menu.js'
 
 const Navbar = () => {
@@ -59,57 +60,69 @@ const Navbar = () => {
   };
 
   return (
-    <>
-      <DivBanner className="container">
-        <button className="shopping mr-xl-4" title="Giỏ hàng của bạn">
-          <FontAwesomeIcon icon={faCartShopping} />
-        </button>
-        {profile?.email ? (
-          <div className="grid">
-            <span> Welcome: {profile?.email}</span>
-            <ButtonContainer
-              onClick={() => {
-                localStorage.removeItem("profile");
-                window.location.reload();
-              }}
-            >
-              logOut
+    <React.Fragment>
+      <DivBanner className="w-100 px-xl-5 col-12 d-inline d-md-flex">
+        <div className="d-flex justify-content-center col-12 col-md-7">
+          <img src={logo} alt="logo" />
+        </div>
+        <div className="col-12 col-md-5 d-flex justify-content-center">
+          <a
+            href="tel:0942520449"
+            className="nav-link text-dark cursor-pointer d-flex align-items-center "
+          >
+            <b> SĐT </b> : <span> 0942520449</span>
+          </a>
+          <button className="shopping mr-xl-4" title="Giỏ hàng của bạn">
+            <FontAwesomeIcon icon={faCartShopping} />
+          </button>
+          {profile?.email ? (
+            <div className="grid">
+              <b  className="d-none d-md-block"> Welcome: {profile?.email}</b>
+              <ButtonContainer
+              className="mt-3 mt-md-0"
+                onClick={() => {
+                  localStorage.removeItem("profile");
+                  window.location.reload();
+                }}
+              >
+                logOut
+              </ButtonContainer>
+              <b  className="d-block d-md-none"> {profile?.email}</b>
+            </div>
+          ) : (
+            <ButtonContainer onClick={() => setShowLogin(!showLogin)}>
+              Đăng nhập
             </ButtonContainer>
-          </div>
-        ) : (
-          <ButtonContainer onClick={() => setShowLogin(!showLogin)}>
-            Đăng nhập
-          </ButtonContainer>
-        )}
+          )}
+        </div>
       </DivBanner>
       <NavWrapper className="navbar navbar-expand-sm p-0 ">
         <div>
           <ToastContainer />
         </div>
-        <div className="d-flex justify-content-between w-100">
-          <Link to="/">
-            <img src={logo} alt="store" width={300} height={300} />
-            {/* Trang chủ */}
-          </Link>
-          <ul className="navbar-nav align-items-center">
-        <li className="nav-item ">
-          <Link to="/" className="nav-link">
-            0942520449
-            <br/>
-            <span className="text-center"></span>
-            <br />
-            0949229321
-          </Link>
-        </li>
-      </ul>
-
-          {/* <div className="slowgen">
-            <span className="mr-2">
-              <i className="fas fa-motorcycle"></i>
-            </span>
-            Giao hàng miễn phí tận nơi. <br />
-            Sẵn sàn phục vụ mọi nơi tại huyện Thạnh Phú .
-          </div> */}
+        <div className="d-flex justify-content-between w-100 banner">
+          <div className="d-flex mx-auto">
+            <div className="slowgen">
+              <span className="mr-2 d-none d-md-block">
+                <FontAwesomeIcon icon={faMagnifyingGlassLocation} width={50} />
+              </span>
+              <div className="d-inline">
+                <h2 className="content">
+                  Chúng tôi cung cấp dịch vụ giao gas <br /> Và hỗ trợ sửa chửa
+                  bếp gas miễn phí
+                </h2>
+                <small className="">Hân hạnh được phục vụ.</small>
+              </div>
+            </div>
+            <div className="pt-4 m-4 d-none d-md-block">
+              <img
+                src={logo2}
+                alt="logo"
+                height={260}
+                className="rounded-pill"
+              />
+            </div>
+          </div>
           {/* <SimpleMenu /> */}
         </div>
         <Modal
@@ -140,15 +153,13 @@ const Navbar = () => {
           </Modal.Footer>
         </Modal>
       </NavWrapper>
-    </>
+    </React.Fragment>
   );
 };
 
 export default Navbar;
 const NavWrapper = styled.nav`
-  background-image:url('https://gassaigonvina.com/upload/photo/slishow-1589350391-bannermain01-6840.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
+  background-color: #d8eacc;
   .nav-link {
     color: var(--mainWhite) !important;
     font-size: 1.3rem;
@@ -162,14 +173,32 @@ const NavWrapper = styled.nav`
     align-items: center !important;
     display: flex;
     text-align: center;
-    color: blue;
-    font-size : 16px
+    color: black;
+    font-size: 16px;
+  }
+  .banner {
+    margin-top: 80px;
+    min-height: 300px;
+  }
+  @media (max-width: 768px) {
+    .banner {
+      margin-top: 150px;
+    }
+  }
+  .content {
+    font-weight: 400;
+    font-family: Graphik Web, Helvetica Neue, Helvetica, Arial, Verdana,
+      sans-serif;
+    letter-spacing: -0.03125rem;
   }
 `;
 const DivBanner = styled.nav`
+  z-index: 999;
+  position: fixed;
+  background-color: white;
   display: flex;
   justify-content: end;
-  padding: 16px;
+  padding: 24px;
   .shopping {
     background-color: transparent;
     border: none;

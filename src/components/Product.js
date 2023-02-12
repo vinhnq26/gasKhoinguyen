@@ -14,11 +14,11 @@ const Product = ({ product }) => {
   const [show, setShow] = useState(false);
   return (
     <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
-      <div className="card" style={{ height: "100%" }}>
+      <div className="card shadow rounded-3" style={{ height: "100%" }}>
         <ProductConsumer>
           {(value) => (
             <div
-              className="img-container p-5"
+              className="img-container p-5 "
               // onClick={() => value.handleDetail(id)}
             >
               <img src={img} alt="product" className="card-img-top" />
@@ -71,6 +71,7 @@ Product.propTypes = {
 
 const ProductWrapper = styled.div`
   .card {
+    border:none;
     border-color: trasparent;
     transition: all 0.5s linear;
   }
