@@ -3,12 +3,14 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import emailjs from "@emailjs/browser";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Spipner from "./Loading";
 
 const MyPopup = ({ show, setShow, price, title }) => {
   const handleClose = () => setShow(false);
   const [validated, setValidated] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     address: "",
@@ -31,6 +33,7 @@ const MyPopup = ({ show, setShow, price, title }) => {
       theme: "light",
     });
   const sendEmail = (e) => {
+    setLoading(true);
     e.preventDefault();
     emailjs
       .sendForm(
@@ -43,13 +46,16 @@ const MyPopup = ({ show, setShow, price, title }) => {
         (result) => {
           console.log(result.text);
           notify();
+          setLoading(false);
         },
         (error) => {
           console.log(error.text);
           notiError();
+          setLoading(false);
         }
       );
     setShow(false);
+
     // e.target.reset();
   };
   const handleSubmit = (event) => {
@@ -67,9 +73,8 @@ const MyPopup = ({ show, setShow, price, title }) => {
 
   return (
     <>
-      <div>
-        <ToastContainer />
-      </div>
+      {console.log("loading", loading)}
+      {loading && <Spipner />}
       <Modal
         show={show}
         onHide={handleClose}
@@ -160,7 +165,7 @@ const MyPopup = ({ show, setShow, price, title }) => {
               <Button
                 type="submit"
                 variant="primary"
-                // onClick={(e) => sendEmail(e)}
+                // onClick={() => setLoading(true)}
               >
                 Đặt hàng
               </Button>

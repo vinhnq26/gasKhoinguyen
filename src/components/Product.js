@@ -8,7 +8,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import MyPopup from "./Popup";
-import { ToastContainer, toast } from "react-toastify";
+import {toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Product = ({ product }) => {
@@ -17,9 +17,6 @@ const Product = ({ product }) => {
   const notify = () => toast.error("Bạn chưa đăng nhập.");
   return (
     <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3 px-1">
-      <div>
-        <ToastContainer />
-      </div>
       <div className="card shadow rounded-3" style={{ height: "100%" }}>
         <ProductConsumer>
           {(value) => (
