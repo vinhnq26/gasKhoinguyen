@@ -9,11 +9,13 @@ import Detailbepgas from "./components/detailbepgas";
 import listbepgas from "./components/listbepgas";
 import Default from "./components/Default";
 import Footer from "./components/Footer";
+import SideNavBar from "./components/SideNav";
 
 function App() {
   return (
     <React.Fragment>
       <Navbar />
+      {/* <SideNavBar /> */}
       <Switch className='position-abso'>
         <Route exact path="/" component={ProductList} />
         <Route path="/details" component={Details} />

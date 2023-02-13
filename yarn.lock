@@ -9551,7 +9551,14 @@ react-async-script-loader@^0.3.0:
   dependencies:
     hoist-non-react-statics "^1.0.3"
 
-react-bootstrap@^2.7.1:
+react-bootstrap-sidebar-menu@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/react-bootstrap-sidebar-menu/-/react-bootstrap-sidebar-menu-2.0.3.tgz#ddeb08a4e5c6f8126d21a8abf881ccba8045860e"
+  integrity sha512-lm5LrOcExFQtKaLSSZ8K2VSnqiROsDgY6WRnitev1eELlrBAyumrdk6ckq5vG8iCeN1GUVKUahIG21LyAOoWRA==
+  dependencies:
+    react-bootstrap "^2.0.0"
+
+react-bootstrap@^2.0.0, react-bootstrap@^2.7.1:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-2.7.1.tgz#ecb245b06fd404700436e9a2ef9a998767225bf0"
   integrity sha512-x+wjk5ZkLR2Bw74iDx/YR0LLheyV72eehjnJPfs6RvkWQfJGVV89dceh1dhJloeazHZwiLWA4LHHwHNGONkUHw==

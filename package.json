@@ -20,6 +20,7 @@
         "gapi-script": "^1.2.0",
         "react": "^16.13.0",
         "react-bootstrap": "^2.7.1",
+        "react-bootstrap-sidebar-menu": "^2.0.3",
         "react-dom": "^16.13.0",
         "react-google-login": "^5.2.2",
         "react-media": "^1.10.0",
