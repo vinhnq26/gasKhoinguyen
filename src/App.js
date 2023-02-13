@@ -10,13 +10,17 @@ import listbepgas from "./components/listbepgas";
 import Default from "./components/Default";
 import Footer from "./components/Footer";
 import SideNavBar from "./components/SideNav";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <React.Fragment>
       <Navbar />
+      <div>
+        <ToastContainer />
+      </div>
       {/* <SideNavBar /> */}
-      <Switch className='position-abso'>
+      <Switch className=''>
         <Route exact path="/" component={ProductList} />
         <Route path="/details" component={Details} />
         <Route path="/detailsbepgas" component={Detailbepgas} />
