@@ -73,7 +73,6 @@ const MyPopup = ({ show, setShow, price, title }) => {
 
   return (
     <>
-      {console.log("loading", loading)}
       {loading && <Spipner />}
       <Modal
         show={show}

@@ -12,9 +12,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { Button, Modal } from "react-bootstrap";
 import { faMagnifyingGlassLocation } from "@fortawesome/free-solid-svg-icons";
 import Spipner from "./Loading";
+import { useContext } from "react";
+import { Context } from "./ProductContext";
+import { observer } from "mobx-react-lite"
+
 // import SimpleMenu from './menu/menu.js'
 
-const Navbar = () => {
+const Navbar =  observer(() => {
   const [profile, setProfile] = useState("");
   const [showLogin, setShowLogin] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -63,7 +67,8 @@ const Navbar = () => {
       return false;
     }
   };
-
+  const value = useContext(Context);
+  console.log("valuevaluevaluevalue",value)
   return (
     <>
       {loading ? (
@@ -170,7 +175,7 @@ const Navbar = () => {
       )}
     </>
   );
-};
+});
 
 export default Navbar;
 const NavWrapper = styled.nav`

@@ -8,13 +8,14 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import MyPopup from "./Popup";
-import {toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Product = ({ product }) => {
+const Product = ({ product, handleAddToCard }) => {
   const { id, title, img, price, inCart } = product;
   const [show, setShow] = useState(false);
   const notify = () => toast.error("Bạn chưa đăng nhập.");
+
   return (
     <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3 px-1">
       <div className="card shadow rounded-3" style={{ height: "100%" }}>
@@ -45,7 +46,15 @@ const Product = ({ product }) => {
                 >
                   <FontAwesomeIcon icon={faCartShopping} />
                 </button>
-                <button title="Thêm vào giỏ hàng">
+                <button
+                  title="Thêm vào giỏ hàng"
+                  onClick={() =>
+                    localStorage.getItem("profile") &&
+                    JSON.parse(localStorage.getItem("profile"))
+                      ? handleAddToCard(product)
+                      : notify()
+                  }
+                >
                   <FontAwesomeIcon icon={faPlusSquare} />
                 </button>
               </div>
