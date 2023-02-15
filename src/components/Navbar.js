@@ -14,11 +14,11 @@ import { faMagnifyingGlassLocation } from "@fortawesome/free-solid-svg-icons";
 import Spipner from "./Loading";
 import { useContext } from "react";
 import { Context } from "./ProductContext";
-import { observer } from "mobx-react-lite"
+import { observer } from "mobx-react-lite";
 
 // import SimpleMenu from './menu/menu.js'
 
-const Navbar =  observer(() => {
+const Navbar = () => {
   const [profile, setProfile] = useState("");
   const [showLogin, setShowLogin] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -38,6 +38,7 @@ const Navbar =  observer(() => {
       progress: undefined,
       theme: "light",
     });
+
   useEffect(() => {
     const initClient = () => {
       gapi.client.init({
@@ -67,8 +68,9 @@ const Navbar =  observer(() => {
       return false;
     }
   };
-  const value = useContext(Context);
-  console.log("valuevaluevaluevalue",value)
+
+  const { addToCard } = useContext(Context);
+
   return (
     <>
       {loading ? (
@@ -86,15 +88,17 @@ const Navbar =  observer(() => {
               >
                 <b> SĐT </b> : <span> 0942520449</span>
               </a>
-              <button className="shopping mr-xl-4" title="Giỏ hàng của bạn">
-                <FontAwesomeIcon icon={faCartShopping} />
-              </button>
+              <div className="d-flex position-relative">
+                <button className="shopping mr-xl-4" title="Giỏ hàng của bạn">
+                  <FontAwesomeIcon icon={faCartShopping} />
+                </button>
+                {addToCard?.length > 0 && (
+                  <div className="quantity">{addToCard?.length}</div>
+                )}
+              </div>
               {profile?.email ? (
                 <div className="grid">
-                  <b className="d-none d-md-block">
-                    {" "}
-                    Welcome: {profile?.email}
-                  </b>
+                  <b className="d-none d-md-block">Welcome: {profile?.email}</b>
                   <ButtonContainer
                     className="mt-3 mt-md-0"
                     onClick={() => {
@@ -175,7 +179,7 @@ const Navbar =  observer(() => {
       )}
     </>
   );
-});
+};
 
 export default Navbar;
 const NavWrapper = styled.nav`
@@ -184,10 +188,6 @@ const NavWrapper = styled.nav`
     color: var(--mainWhite) !important;
     font-size: 1.3rem;
     text-transform: capitalize !important;
-  }
-  .shopping {
-    background-color: transparent;
-    border: none;
   }
   .slowgen {
     align-items: center !important;
@@ -222,6 +222,15 @@ const DivBanner = styled.nav`
   .shopping {
     background-color: transparent;
     border: none;
+  }
+  .quantity {
+    position: absolute;
+    top: 0;
+    left: 10;
+    background: red;
+    border-radius: 50%;
+    min-width: 30px;
+    text-align: center;
   }
   .grid {
     display: grid;

@@ -11,10 +11,14 @@ import Default from "./components/Default";
 import Footer from "./components/Footer";
 import SideNavBar from "./components/SideNav";
 import { ToastContainer } from "react-toastify";
+import { Context } from "./components/ProductContext";
+import { useState } from "react";
 
 function App() {
+  const [addToCard, setAddToCard] = useState([]);
+
   return (
-    <React.Fragment>
+     <Context.Provider value={{addToCard,setAddToCard}}>
       <Navbar />
       <div>
         <ToastContainer />
@@ -36,7 +40,7 @@ function App() {
       <i className="fas fa-arrow-up"></i>
     </button>
       <Footer />
-    </React.Fragment>
+    </Context.Provider>
   );
 }
 
