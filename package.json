@@ -18,6 +18,8 @@
         "emailjs": "^4.0.1",
         "font-awesome": "^4.7.0",
         "gapi-script": "^1.2.0",
+        "mobx": "^6.8.0",
+        "mobx-react-lite": "^3.4.0",
         "react": "^16.13.0",
         "react-bootstrap": "^2.7.1",
         "react-bootstrap-sidebar-menu": "^2.0.3",
