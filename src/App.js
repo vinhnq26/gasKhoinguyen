@@ -19,11 +19,12 @@ function App() {
 
   return (
      <Context.Provider value={{addToCard,setAddToCard}}>
+       <SideNavBar />
       <Navbar />
       <div>
         <ToastContainer />
       </div>
-      {/* <SideNavBar /> */}
+    
       <Switch className=''>
         <Route exact path="/" component={ProductList} />
         <Route path="/details" component={Details} />

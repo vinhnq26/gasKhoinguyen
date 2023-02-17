@@ -97,10 +97,10 @@ const Navbar = () => {
                 )}
               </div>
               {profile?.email ? (
-                <div className="grid">
+                <div className="grid ">
                   <b className="d-none d-md-block">Welcome: {profile?.email}</b>
                   <ButtonContainer
-                    className="mt-3 mt-md-0"
+                    className=""
                     onClick={() => {
                       localStorage.removeItem("profile");
                       window.location.reload();
@@ -108,7 +108,7 @@ const Navbar = () => {
                   >
                     logOut
                   </ButtonContainer>
-                  <b className="d-block d-md-none"> {profile?.email}</b>
+                  {/* <b className="d-block d-md-none"> {profile?.email}</b> */}
                 </div>
               ) : (
                 <ButtonContainer onClick={() => setShowLogin(!showLogin)}>
